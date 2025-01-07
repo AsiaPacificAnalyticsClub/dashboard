@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendarPlus,
+  faUserPlus,
+  faStore,
+} from "@fortawesome/free-solid-svg-icons";
+import { router } from "@inertiajs/react";
 
 const { Header, Content, Sider } = Layout;
 
@@ -11,6 +18,29 @@ export default function AdminLayout({ children }) {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const navItems = [
+    {
+      key: "1",
+      icon: <FontAwesomeIcon icon={faCalendarPlus} />,
+      label: "Event",
+      route: "event",
+    },
+    {
+      key: "2",
+      icon: <FontAwesomeIcon icon={faUserPlus} />,
+      label: "User",
+      route: "register",
+    },
+    {
+      key: "3",
+      icon: <FontAwesomeIcon icon={faStore} />,
+      label: "Merch",
+      route: "dashboard",
+    },
+  ];
+
+  const selectedKey = navItems.find((item) => route().current(item.route))?.key;
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -18,14 +48,11 @@ export default function AdminLayout({ children }) {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <MenuFoldOutlined />,
-              label: "nav 1",
-            },
-          ]}
+          selectedKeys={[selectedKey]}
+          items={navItems.map((item) => ({
+            ...item,
+            onClick: () => router.get(route(item.route)),
+          }))}
         />
       </Sider>
       <Layout>
