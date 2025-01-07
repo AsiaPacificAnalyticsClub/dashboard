@@ -113,8 +113,17 @@ return [
         ],
         'mongodb' => [
             'driver' => 'mongodb',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '27017'),
             'dsn' => env('DB_URI'),
             'database' => env('DB_DATABASE', 'base'),
+            'username' => env('DB_USERNAME', 'asiapacificanalyticsclubapu'),
+            'password' => env('DB_PASSWORD', 'ApuApac2022'),
+            'options' => [
+                'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'),
+                'ssl' => true,
+                'tlsCAFile' => storage_path('certs/cacert.pem'),
+            ],
         ],
     ],
 

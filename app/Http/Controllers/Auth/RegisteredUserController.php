@@ -32,9 +32,15 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'email' => 'required|string|lowercase|email|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        if (User::where('email', $request->email)->exists()) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided email is already associated with an account.'],
+            ]);
+        }
 
         $user = User::create([
             'name' => $request->name,
