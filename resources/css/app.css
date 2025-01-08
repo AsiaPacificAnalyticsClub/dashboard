@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Override Tailwind's preflight styles for Ant Design inputs */
+.ant-input {
+  background-color: #ffffff !important;
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 6px !important;
+  padding: 4px 11px !important;
+  font-size: 14px !important;
+  line-height: 1.5714285714285714 !important;
+  transition: all 0.2s !important;
+}
+
+.ant-input:hover {
+  border-color: #4096ff !important;
+}
+
+.ant-input:focus {
+  border-color: #4096ff !important;
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1) !important;
+  outline: none !important;
+}

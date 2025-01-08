@@ -29,5 +29,7 @@ class Events extends Model
 {
     protected $connection = 'mongodb';
 
+    protected $collection = 'events';
+
     protected $fillable = ['title', 'description', 'start_date', 'end_date', 'link', 'image'];
 }
