@@ -5,9 +5,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Events/Event');
-})->middleware(['auth', 'verified'])->name('events.index');
+Route::get('/', [EventsController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('home');
 
 Route::get('/register', function () {
     return Inertia::render('Auth/Register');
@@ -20,14 +20,16 @@ Route::middleware('auth')->group(function () {
 
     // Events
     Route::prefix('events')->group(function () {
-        // Route::get('/', function () {
-        //     return Inertia::render('Events/Event');
-        // })->name('events.index');
         Route::get('/create', function () {
             return Inertia::render('Events/Create');
         })->name('events.create');
 
+        Route::get('/', [EventsController::class, 'index'])->name('events.index');
         Route::post('/store', [EventsController::class, 'store'])->name('events.store');
+        Route::get('/{id}', [EventsController::class, 'show'])->name('events.show');
+        Route::get('/{id}/edit', [EventsController::class, 'edit'])->name('events.edit');
+        Route::patch('/{id}', [EventsController::class, 'update'])->name('events.update');
+        Route::delete('/{id}', [EventsController::class, 'destroy'])->name('events.destroy');
     });
 
     // Merch

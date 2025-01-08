@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Events;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Inertia\Response;
 
 class EventsController extends Controller
@@ -13,13 +14,15 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Events/Event', ['events' => Events::all()]);
+        $events = Events::all();
+
+        return Inertia::render('Events/Event', ['events' => $events]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): Response
+    public function create(): Response
     {
         return Inertia::render('Events/Create', [
             'events' => new Events,
@@ -72,22 +75,43 @@ class EventsController extends Controller
      */
     public function edit(Events $events)
     {
-        //
+        return Inertia::render('Events/Edit', [
+            'events' => $events,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Events $events)
+    public function update(Request $request, $id)
     {
-        //
+        $events = Events::findOrFail($id);
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
+
+        $events->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
+
+        return redirect()->route('events.index')->with('success', 'Event updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Events $events)
+    public function destroy($id)
     {
-        //
+        $events = Events::findOrFail($id);
+        $events->delete();
+
+        return redirect()->route('events.index')->with('success', 'Event deleted successfully!');
     }
 }

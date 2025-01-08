@@ -132,9 +132,8 @@ export default function AdminLayout({ children }) {
             padding: 24,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            minHeight: 564,
+            minHeight: "100vh",
           }}
-          className="min-h-full"
         >
           {children}
         </Content>

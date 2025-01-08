@@ -2,23 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Override Tailwind's preflight styles for Ant Design inputs */
-.ant-input {
-  background-color: #ffffff !important;
-  border: 1px solid #d9d9d9 !important;
-  border-radius: 6px !important;
-  padding: 4px 11px !important;
-  font-size: 14px !important;
-  line-height: 1.5714285714285714 !important;
-  transition: all 0.2s !important;
+/* Basic Input styles */
+.ant-input:not(.ant-input-affix-wrapper .ant-input) {
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  padding: 4px 11px;
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  transition: all 0.2s;
 }
 
-.ant-input:hover {
-  border-color: #4096ff !important;
+.ant-input:not(.ant-input-affix-wrapper .ant-input):hover {
+  border-color: #4096ff;
 }
 
-.ant-input:focus {
-  border-color: #4096ff !important;
-  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1) !important;
-  outline: none !important;
+.ant-input:not(.ant-input-affix-wrapper .ant-input):focus {
+  border-color: #4096ff;
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  outline: none;
+}
+
+/* Affix wrapper styles */
+.ant-input-affix-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 11px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+.ant-input-affix-wrapper:hover {
+  border-color: #4096ff;
+}
+
+.ant-input-affix-wrapper-focused {
+  border-color: #4096ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* Input inside affix wrapper */
+.ant-input-affix-wrapper .ant-input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 4px 0;
+}
+
+.ant-input-affix-wrapper .ant-input:hover,
+.ant-input-affix-wrapper .ant-input:focus {
+  box-shadow: none;
+  border: none;
+}
+
+/* Prefix/Suffix styles */
+.ant-input-prefix,
+.ant-input-suffix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.ant-input-prefix {
+  margin-right: 8px;
+}
+
+.ant-input-suffix {
+  margin-left: 8px;
 }
