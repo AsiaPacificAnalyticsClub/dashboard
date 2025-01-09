@@ -28,22 +28,22 @@ export default function Event() {
 
   const columns = [
     {
-      title: "Event Title",
+      title: "Title",
       dataIndex: "title",
       key: "title",
     },
     {
-      title: "Event Description",
+      title: "Description",
       dataIndex: "description",
       key: "description",
     },
     {
-      title: "Event Start Date",
+      title: "Start Date",
       dataIndex: "start_date",
       key: "start_date",
     },
     {
-      title: "Event End Date",
+      title: "End Date",
       dataIndex: "end_date",
       key: "end_date",
     },
