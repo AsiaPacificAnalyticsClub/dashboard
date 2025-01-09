@@ -29,13 +29,17 @@ export default function AdminLayout({ children }) {
       route: "events.index",
       routeGroup: "events",
     },
-    {
-      key: "2",
-      icon: <FontAwesomeIcon icon={faUserPlus} />,
-      label: "User",
-      route: "register",
-      routeGroup: "register",
-    },
+    ...(user.email === "asiapacificanalyticsclubapu@gmail.com"
+      ? [
+          {
+            key: "2",
+            icon: <FontAwesomeIcon icon={faUserPlus} />,
+            label: "User",
+            route: "auth.index",
+            routeGroup: "auth",
+          },
+        ]
+      : []),
     {
       key: "3",
       icon: <FontAwesomeIcon icon={faStore} />,
@@ -48,7 +52,10 @@ export default function AdminLayout({ children }) {
   const selectedKey =
     navItems.find((item) => {
       const currentRoute = route().current();
-      return currentRoute.startsWith(item.routeGroup);
+      return (
+        currentRoute?.startsWith(item.routeGroup) ||
+        (item.routeGroup === "auth" && currentRoute === "register")
+      );
     })?.key || "1";
 
   return (

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -12,6 +14,10 @@ Route::get('/', [EventsController::class, 'index'])
 Route::get('/register', function () {
     return Inertia::render('Auth/Register');
 })->middleware(['auth', 'verified'])->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('register.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,6 +46,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', function () {
             return Inertia::render('Merch/Create');
         })->name('merch.create');
+    });
+
+    // Users
+    Route::prefix('auth')->group(function () {
+        Route::get('/', [UsersController::class, 'index'])->name('auth.index');
+        Route::patch('/{id}', [UsersController::class, 'update'])->name('auth.update');
+        Route::delete('/{id}', [UsersController::class, 'destroy'])->name('auth.destroy');
     });
 });
 
