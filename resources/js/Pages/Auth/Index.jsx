@@ -143,7 +143,7 @@ export default function Index() {
           color="default"
           variant="solid"
           onClick={() => {
-            router.get(route("events.create"));
+            router.get(route("register"));
           }}
         >
           Add User
