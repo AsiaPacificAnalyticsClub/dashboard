@@ -50,6 +50,7 @@ export default function Event() {
     {
       title: "Action",
       key: "action",
+      fixed: "right",
       render: (text, record) => (
         <Space size="small">
           <Button
@@ -175,11 +176,16 @@ export default function Event() {
           <PlusOutlined />
         </Button>
       </div>
-      <Table columns={columns} dataSource={data} bordered />
+      <Table
+        columns={columns}
+        dataSource={data}
+        bordered
+        scroll={{ x: "max-content" }}
+      />
       {/* Edit Event Modal */}
       <Modal
         title="Edit Event"
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
       >

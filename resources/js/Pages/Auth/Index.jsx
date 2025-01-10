@@ -29,6 +29,7 @@ export default function Index() {
     {
       title: "Action",
       key: "action",
+      fixed: "right",
       render: (text, record) => (
         <Space size="small">
           <Button
@@ -149,10 +150,15 @@ export default function Index() {
           <PlusOutlined />
         </Button>
       </div>
-      <Table dataSource={data} columns={columns} bordered />
+      <Table
+        dataSource={data}
+        columns={columns}
+        bordered
+        scroll={{ x: "max-content" }}
+      />
       <Modal
         title="Edit User"
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
       >
