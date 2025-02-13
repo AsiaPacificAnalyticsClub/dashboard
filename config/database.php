@@ -119,11 +119,11 @@ return [
             'database' => env('DB_DATABASE', 'base'),
             'username' => env('DB_USERNAME', 'asiapacificanalyticsclubapu'),
             'password' => env('DB_PASSWORD', 'ApuApac2022'),
-            'options' => [
-                'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'),
-                'ssl' => false,
-                'tlsCAFile' => storage_path('certs/cacert.pem'),
-            ],
+            // 'options' => [
+            //     'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'),
+            //     'ssl' => false,
+            //     'tlsCAFile' => storage_path('certs/cacert.pem'),
+            // ],
         ],
     ],
 
