@@ -1,0 +1,2 @@
+[overlays]
+paths = ["./yarn-overlay.nix"]
