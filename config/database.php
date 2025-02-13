@@ -121,7 +121,7 @@ return [
             'password' => env('DB_PASSWORD', 'ApuApac2022'),
             'options' => [
                 'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'),
-                'ssl' => false,
+                'ssl' => true,
                 'tlsCAFile' => storage_path('certs/cacert.pem'),
             ],
         ],
