@@ -1,2 +1,12 @@
-[overlays]
-paths = ["./yarn-overlay.nix"]
+[nix]
+channel = "nixpkgs-unstable" # Optional: Use a specific Nixpkgs version
+
+[overrides]
+yarn = { installPhase = '''
+  mkdir -p $out/share/doc/yarn
+  mv $out/LICENSE $out/share/doc/yarn/
+''' }
+composer = { installPhase = '''
+  mkdir -p $out/share/doc/composer
+  mv $out/LICENSE $out/share/doc/composer/
+''' }
